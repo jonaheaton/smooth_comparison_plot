@@ -38,6 +38,11 @@ if isfield(options,'num_thresh')
 else
     num_thresh = 3;
 end
+if isfield(options,'xlimits')
+    xlimits = options.xlimits;
+else
+    xlimits = [];
+end
 
 
 %% to choose your own colors, list colors in cellarray
@@ -98,8 +103,9 @@ for jj=1:length(data2)
     %xlimits = quantile(xdata,[.05,.95]);
     xdata = data1{jj};
     ydata = data2{jj};
-    sigma = std(xdata)/2;
-    [x_space,y_smooth,y_err,y_num] = smooth_plot(xdata,ydata,sigma);
+    notnan = ~isnan(xdata);
+    sigma = std(xdata(notnan))/2;
+    [x_space,y_smooth,y_err,y_num] = smooth_plot(xdata,ydata,sigma,xlimits);
     output(jj).x_space = x_space;
     output(jj).y_smooth = y_smooth;
     output(jj).y_err = y_err;

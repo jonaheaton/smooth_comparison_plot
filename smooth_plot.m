@@ -19,6 +19,7 @@ end
  
 y_smooth = nan(size(x_space));
 y_ste  = nan(size(x_space));
+y_std = nan(size(x_space));
 y_num =  nan(size(x_space));
 total_w = nan(size(x_space));
 if ~isempty(xdata)
